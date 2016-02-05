@@ -1,0 +1,6 @@
+C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\bin\dynamicData.dll.config
+C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\bin\dynamicData.dll
+C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\bin\dynamicData.pdb
+C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.csprojResolveAssemblyReference.cache
+C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.dll
+C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.pdb
