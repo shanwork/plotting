@@ -1,3 +1,3 @@
 ﻿(function() {
-    var budgetApp = angular.module('org_maint_budget', ['ngRoute','ngSanitize','ngStorage']);
+    var graph_app = angular.module('graph_app', ['ngRoute','ngSanitize','ngStorage']);
 }());
