@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,6 +71,10 @@
     <Content Include="graphs\scripts\controllers\heartbeatController.js" />
     <Content Include="graphs\scripts\global\heartBeatService.js" />
     <Content Include="index.html" />
+    <Content Include="readings\home.html" />
+    <Content Include="readings\scripts\app.js" />
+    <Content Include="readings\scripts\controllers\NasdaqController.js" />
+    <Content Include="readings\views\Nasdaq.html" />
     <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\c3.min.js" />
@@ -82,7 +87,8 @@
   <ItemGroup>
     <Folder Include="graphs\localStyle\" />
     <Folder Include="graphs\views\" />
-    <Folder Include="readings\" />
+    <Folder Include="readings\localStyle\" />
+    <Folder Include="readings\scripts\globals\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

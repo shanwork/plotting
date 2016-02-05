@@ -4,3 +4,9 @@ C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\bin\dynamicD
 C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.csprojResolveAssemblyReference.cache
 C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.dll
 C:\Users\sgadkari\Documents\GitHub\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.pdb
+C:\Shantanu\Technical\Web Development\My-projects\plotting\dynamicData\dynamicData\bin\dynamicData.dll.config
+C:\Shantanu\Technical\Web Development\My-projects\plotting\dynamicData\dynamicData\bin\dynamicData.dll
+C:\Shantanu\Technical\Web Development\My-projects\plotting\dynamicData\dynamicData\bin\dynamicData.pdb
+C:\Shantanu\Technical\Web Development\My-projects\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.csprojResolveAssemblyReference.cache
+C:\Shantanu\Technical\Web Development\My-projects\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.dll
+C:\Shantanu\Technical\Web Development\My-projects\plotting\dynamicData\dynamicData\obj\Debug\dynamicData.pdb

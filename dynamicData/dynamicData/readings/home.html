@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="readings_app">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <div class="container-fluid" style="overflow:auto;">
+        <div class="row">
+            <div class="col-lg-12 col-cm-12">
+                <header>
+                    <nav class="navbar navbar-default" style="border:2px outset silver;">
+                        <ul class="navbar navbar-nav">
+                            <li><a href="../index.html"><b>Home Page</b></a></li>
+                            <li><a href="#/nasdaq">Nasdaq</a></li>
+                           
+                        </ul>
+                    </nav>
+                </header>
+
+                HELLO WORLD
+
+                <div ng-view ></div>
+            </div>
+            HEKKO
+        </div>
+    </div>
+    <script src="../scripts/angular.js"></script>
+    <script src="../scripts/angular-route.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular-sanitize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/NasdaqController.js"></script>
+</body>
+</html>

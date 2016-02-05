@@ -1,0 +1,25 @@
+﻿<div style="background-color:gray;">
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Change</th>
+        </tr>
+        <tr>
+            <th><input type="text" id="company" data-ng-model="newCompany" /></th>
+            <th><input type="text" id="symbol" data-ng-model="newSymbol" /></th>
+            <th><input type="text" id="origPrice" data-ng-model="newPrice" /></th>
+            <th><button type="button" data-ng-click="addStock()"> Add </button></th>
+        </tr>
+        <tr data-ng-repeat="stockItem in stockList">
+            <td>{{stockItem.companyName}}</td>
+            <td>{{stockItem.stockSymbol}}</td>
+            <td>{{stockItem.stockPrice}}</td>
+            <td>{{stockItem.stockDelta}}</td>
+         </tr>
+    </table>
+    <input type="text" id="GOOGLE" data-ng-model="googlePrice" /> {{delta}}
+    <button type="button" data-ng-click="readStock()"> read</button>
+    <button type="button" data-ng-click="stopRead()"> stop</button>
+</div>
