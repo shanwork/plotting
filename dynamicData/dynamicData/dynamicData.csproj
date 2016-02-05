@@ -74,6 +74,7 @@
     <Content Include="readings\home.html" />
     <Content Include="readings\scripts\app.js" />
     <Content Include="readings\scripts\controllers\NasdaqController.js" />
+    <Content Include="readings\scripts\globals\NasdaqService.js" />
     <Content Include="readings\views\Nasdaq.html" />
     <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\angular.js" />
@@ -88,7 +89,6 @@
     <Folder Include="graphs\localStyle\" />
     <Folder Include="graphs\views\" />
     <Folder Include="readings\localStyle\" />
-    <Folder Include="readings\scripts\globals\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,10 +1,10 @@
-﻿<div style="background-color:gray;">
-    <table>
+﻿<div >
+    <table class="table table-striped" >
         <tr>
-            <th>Company</th>
-            <th>Symbol</th>
-            <th>Price</th>
-            <th>Change</th>
+            <th style="width:100px;">Company</th>
+            <th style="width:100px;"> Symbol</th>
+            <th style="width:100px;">Price</th>
+            <th style ="width:100px;">Change</thstyle>
         </tr>
         <tr>
             <th><input type="text" id="company" data-ng-model="newCompany" /></th>
@@ -19,7 +19,7 @@
             <td>{{stockItem.stockDelta}}</td>
          </tr>
     </table>
-    <input type="text" id="GOOGLE" data-ng-model="googlePrice" /> {{delta}}
+    
     <button type="button" data-ng-click="readStock()"> read</button>
     <button type="button" data-ng-click="stopRead()"> stop</button>
 </div>
