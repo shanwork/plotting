@@ -60,6 +60,18 @@
          //       alert($localStorage.graphList.length);
             }
         }
+        $scope.stopServer = function () {
+            NasdaqService.stopRead();
+            $scope.stopRead();
+        }
+        $scope.startServer = function () {
+            NasdaqService.startRead();
+            $scope.readStock();
+        }
+        $scope.flush = function () {
+            $localStorage.stockList=[];
+            $scope.getStockList();
+        }
         $scope.addStock = function()
         {
             var restart = false ;
@@ -79,7 +91,7 @@
                     changeSinceBuy: 0.00
                 };
             $localStorage.stockList.push(newStock);
-            $scope.stockList.push(newStock);// = $localStorage.stockList;//NasdaqService.getStockList();
+      //      $scope.stockList.push(newStock);// = $localStorage.stockList;//NasdaqService.getStockList();
             if (restart == true)
                 $scope.readStock();
         }
@@ -133,15 +145,57 @@
             }
            
             var chart = c3.generate(config);
-            $scope.chart2 = c3.generate({
-                bindto: '#chart2',
-                data: {
-                    columns: [
-                      ['data1', 30, 200, 100, 400, 150, 250],
-                      ['data2', 50, 20, 10, 40, 15, 25]
-                    ]
+            var configSummary = {};
+            configSummary.bindto = '#chart2';
+            configSummary.data = {};
+            configSummary.data.columns = [];
+            if ($scope.summaryGraphList == undefined || $scope.summaryGraphList.length == 0) {
+                $scope.summaryGraphList = [];
+                
+                    var totalWealth = ['Wealth (in 1000s)'];
+                    $scope.summaryGraphList.push(totalWealth);
+                    var totalChange = ['Change (in 100s)'];
+                    $scope.summaryGraphList.push(totalChange);
+          
+            }
+            var totalWealth = 0.0, totalDelta = 0.0;
+
+            //            stockPriceConverted: 33.99,
+            //            sharesBought: 890,
+            //            stockDelta: 0.00,
+            for (totalStocks = 0 ; totalStocks < $scope.stockList.length; totalStocks++)
+            {
+                totalWealth += ($scope.stockList[totalStocks].stockPriceConverted * $scope.stockList[totalStocks].sharesBought);
+                totalDelta += ($scope.stockList[totalStocks].stockDelta * $scope.stockList[totalStocks].sharesBought);
+            }
+            if ($scope.summaryGraphList[0].length < $scope.maxValues) {
+                $scope.summaryGraphList[0].push(totalWealth);
+                $scope.summaryGraphList[1].push(totalDelta);
+            }
+            else {
+                for (subIndex = 1 ; subIndex < $scope.maxValues - 1 ; subIndex++) {
+                    $scope.summaryGraphList[0][subIndex] = $scope.graphList[0][subIndex + 1];
+                    $scope.summaryGraphList[1][subIndex] = $scope.graphList[1][subIndex + 1];
+                    //     console.log($scope.graphList[stIndex][subIndex + 1]);
                 }
-            });
+                $scope.summaryGraphList[0][$scope.maxValues - 1] = totalWealth / 1000.00;
+                $scope.summaryGraphList[1][$scope.maxValues - 1] = totalDelta / 100.00;
+            }
+            configSummary.data.columns.push($scope.summaryGraphList[0]);
+            configSummary.data.columns.push($scope.summaryGraphList[1]);
+         
+
+            var chart2 = c3.generate(configSummary);
+            
+            //$scope.chart2 = c3.generate({
+            //    bindto: '#chart2',
+            //    data: {
+            //        columns: [
+            //          ['data1', 30, 200, 100, 400, 150, 250],
+            //          ['data2', 50, 20, 10, 40, 15, 25]
+            //        ]
+            //    }
+            //});
         }
         $scope.showGraphLocalStorage = function () {
             if ($scope.maxValues == null || isNaN($scope.maxValues))

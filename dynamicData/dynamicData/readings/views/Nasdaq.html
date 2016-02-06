@@ -31,13 +31,16 @@
 
     <button type="button" data-ng-click="readStock()"> read</button>
     <button type="button" data-ng-click="stopRead()"> stop</button>
-     
+    <button type="button" data-ng-click="stopServer()"> stop Server</button>
+    <button type="button" data-ng-click="startServer()"> start Server</button>
+<button type="button" data-ng-click="flush()"> flush</button>
+ 
     Currency: <select data-ng-model="selectedOption"
             data-ng-options="currency.Name + ' (' + currency.value +')' for currency in  currencyList"></select>
     Graph Plot values: 
     <input type="text" ng-model="maxValues" />
-    <div id="chart"></div>
-    <div id="chart2"></div>
+    <div id="chart" style="float:left;width:50%;"></div>
+    <div id="chart2" style="float:right;width:50%;"></div>
     <table>
         <tr></tr>
     </table>
