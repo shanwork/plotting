@@ -40,6 +40,7 @@
                     conversion = $scope.selectedOption.value;
                 //       $scope.stockList = $localStorage.stockList;
                 for (i = 0 ; i < $scope.stockList.length; i++) {
+                   
                     $scope.stockList[i].stockDelta = $localStorage.stockList[i].stockDelta * conversion;
                     $scope.stockList[i].stockPrice = $localStorage.stockList[i].stockPrice * conversion;
                     $scope.stockList[i].changeSinceBuy = $localStorage.stockList[i].changeSinceBuy * conversion;
@@ -48,9 +49,11 @@
                     //  $scope.stockList[i].stockDelta  = delta;
 
                 }
+
                 $scope.showGraph();
             },
             $scope.interval);
+            $scope.graphable = 1;
         };
         $scope.stopRead = function () {
             if (angular.isDefined(stop)) {
@@ -140,8 +143,8 @@
                     }
                          $scope.graphList[stIndex][$scope.maxValues - 1] = $scope.stockList[stIndex].stockPrice
                 }
-
-                config.data.columns.push($scope.graphList[stIndex]);
+                if ($scope.stockList[stIndex].graphIt == true)
+                    config.data.columns.push($scope.graphList[stIndex]);
             }
            
             var chart = c3.generate(config);

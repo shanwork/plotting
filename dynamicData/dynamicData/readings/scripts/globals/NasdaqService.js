@@ -5,6 +5,7 @@
         this.stockList =
             [
                 {
+                    graphIt: true,
                     companyName: 'Company1',
                     stockSymbol: 'COM1',
                     originalStockPrice: 23.33,
@@ -15,6 +16,7 @@
                     changeSinceBuy: 0.00
                 },
                 {
+                    graphIt:true,
                     companyName: 'Company2',
                     stockSymbol: 'COM2',
                     originalStockPrice: 33.99,
@@ -25,6 +27,7 @@
                     changeSinceBuy: 0.00
                 },
                 {
+                    graphIt: true,
                     companyName: 'Company3',
                     stockSymbol: 'COM3',
                     originalStockPrice: 75.01,
@@ -35,6 +38,7 @@
                     changeSinceBuy: 0.00
                 },
                 {
+                    graphIt: true,
                     companyName: 'Company4',
                     stockSymbol: 'COM4',
                     originalStockPrice: 175.01,
@@ -112,7 +116,7 @@
                         $localStorage.stockList[i].stockDelta *= -3.5;
                     $localStorage.stockList[i].stockPrice += $localStorage.stockList[i].stockDelta;
                     $localStorage.stockList[i].changeSinceBuy += $localStorage.stockList[i].stockDelta;
-                    console.log($localStorage.stockList[0].stockPrice);
+               //     console.log($localStorage.stockList[0].stockPrice);
 
                     //  $scope.stockList[i].stockDelta  = delta;
 
@@ -122,7 +126,7 @@
                 $localStorage.count++;
             },
             500, 0, false, this.stockList, new Date().getMilliseconds() );
-            console.log(this.stop);
+        //    console.log(this.stop);
         };
     });
 }());
