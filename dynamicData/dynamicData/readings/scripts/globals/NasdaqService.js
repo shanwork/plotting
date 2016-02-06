@@ -125,6 +125,7 @@
                     else if (i%5==0)
                         $localStorage.stockList[i].stockDelta *= -3.5;
                     $localStorage.stockList[i].stockPrice += $localStorage.stockList[i].stockDelta;
+                    $localStorage.stockList[i].changeSinceBuy += $localStorage.stockList[i].stockDelta;
                     console.log($localStorage.stockList[0].stockPrice);
 
                     //  $scope.stockList[i].stockDelta  = delta;

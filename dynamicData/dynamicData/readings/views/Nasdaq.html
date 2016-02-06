@@ -1,10 +1,13 @@
-﻿<div >
-    <table class="table table-striped" >
+﻿<div data-ng-init="showGraph()">
+    Interval in Ms<input type="text" ng-model="interval" />
+    <table class="table table-striped">
         <tr>
             <th style="width:100px;">Company</th>
             <th style="width:100px;"> Symbol</th>
+            <th style="width:100px;">Bought</th>
             <th style="width:100px;">Price</th>
-            <th style ="width:100px;">Change</thstyle>
+            <th style="width:100px;">Last Change</th>
+            <th style="width:100px;">Change Since buy</th>
         </tr>
         <tr>
             <th><input type="text" id="company" data-ng-model="newCompany" /></th>
@@ -15,11 +18,20 @@
         <tr data-ng-repeat="stockItem in stockList">
             <td>{{stockItem.companyName}}</td>
             <td>{{stockItem.stockSymbol}}</td>
+            <td>{{stockItem.originalStockPrice}}</td>
             <td>{{stockItem.stockPrice}}</td>
             <td>{{stockItem.stockDelta}}</td>
-         </tr>
+            <td>{{stockItem.changeSinceBuy}}</td>
+        </tr>
     </table>
-    
+
     <button type="button" data-ng-click="readStock()"> read</button>
     <button type="button" data-ng-click="stopRead()"> stop</button>
+     
+    Currency: <select data-ng-model="selectedOption"
+            data-ng-options="currency.Name + ' (' + currency.value +')' for currency in  currencyList"></select>
+    Graph Plot values: 
+    <input type="text" ng-model="maxValues" />
+    <div id="chart"></div>
 </div>
+
