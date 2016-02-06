@@ -28,7 +28,7 @@
 
         $scope.readStock = function () {
             if ($scope.interval == null || isNaN($scope.interval))
-                $scope.interval = 10;
+                $scope.interval = 500;
             if (angular.isDefined(stop))
                 return;
             // NasdaqService.getStockList();
@@ -43,8 +43,8 @@
                     $scope.stockList[i].stockDelta = $localStorage.stockList[i].stockDelta * conversion;
                     $scope.stockList[i].stockPrice = $localStorage.stockList[i].stockPrice * conversion;
                     $scope.stockList[i].changeSinceBuy = $localStorage.stockList[i].changeSinceBuy * conversion;
-                    console.log($scope.stockList[i].stockPrice);
-                    console.log($localStorage.stockList[i].stockPrice);
+                   // console.log($scope.stockList[i].stockPrice);
+                   // console.log($localStorage.stockList[i].stockPrice);
                     //  $scope.stockList[i].stockDelta  = delta;
 
                 }
@@ -57,22 +57,93 @@
                 $interval.cancel(stop);
                 stop = undefined;
                 $localStorage.graphList = [];
-                alert($localStorage.graphList.length);
+         //       alert($localStorage.graphList.length);
             }
         }
         $scope.addStock = function()
         {
+            var restart = false ;
+            if (angular.isDefined(stop)) {
+                restart = true;
+                $scope.stopRead();
+            }
             var newStock =
                 {
                     companyName: $scope.newCompany,
                     stockSymbol: $scope.newSymbol,
+                    originalStockPrice: parseFloat($scope.newPrice),
                     stockPrice: parseFloat($scope.newPrice),
-                    stockDelta: 0.00
+                    stockPriceConverted: parseFloat($scope.newPrice),
+                    sharesBought: parseFloat($scope.newUnits),
+                    stockDelta: 0.00,
+                    changeSinceBuy: 0.00
                 };
             $localStorage.stockList.push(newStock);
-            $scope.stockList = $localStorage.stockList;//NasdaqService.getStockList();
+            $scope.stockList.push(newStock);// = $localStorage.stockList;//NasdaqService.getStockList();
+            if (restart == true)
+                $scope.readStock();
         }
+
         $scope.showGraph = function () {
+            if ($scope.maxValues == null || isNaN($scope.maxValues))
+                $scope.maxValues = 10;
+            var config = {};
+            config.bindto = '#chart';
+            config.data = {};
+            config.data.columns = [];
+
+            if ($scope.graphList == undefined || $scope.graphList.length == 0 ) {
+                $scope.graphList = [];
+                for (k = 0 ; k < $scope.stockList.length; k++) {
+                    var stockElement = [];
+                    stockElement.push($scope.stockList[k].stockSymbol);
+                    $scope.graphList.push(stockElement);
+                }
+            }
+            if ($scope.graphList.length < $scope.stockList.length)
+            {
+                for (remGraph = $scope.graphList.length; remGraph < $scope.stockList.length; remGraph++)
+                {
+                    var newStockElement = [];
+                    newStockElement.push($scope.stockList[remGraph].stockSymbol);
+                    $scope.graphList.push(newStockElement);
+                }
+            }
+            for (stIndex = 0 ; stIndex < $scope.graphList.length; stIndex++) {
+
+                if (stIndex >  ($scope.stockList.length-1))
+                {
+                    var newStockElement = [];
+                    newStockElement.push($scope.stockList[stIndex].stockSymbol);
+                    $scope.graphList.push(newStockElement);
+                    console.log('added' + $scope.stockList[stIndex].stockSymbol);
+                 }
+                if ($scope.graphList[stIndex].length < $scope.maxValues) {
+                    $scope.graphList[stIndex].push($scope.stockList[stIndex].stockPrice);
+                }
+                else {
+                    for (subIndex = 1 ; subIndex < $scope.maxValues - 1 ; subIndex++) {
+                        $scope.graphList[stIndex][subIndex] = $scope.graphList[stIndex][subIndex + 1];
+                   //     console.log($scope.graphList[stIndex][subIndex + 1]);
+                    }
+                         $scope.graphList[stIndex][$scope.maxValues - 1] = $scope.stockList[stIndex].stockPrice
+                }
+
+                config.data.columns.push($scope.graphList[stIndex]);
+            }
+           
+            var chart = c3.generate(config);
+            $scope.chart2 = c3.generate({
+                bindto: '#chart2',
+                data: {
+                    columns: [
+                      ['data1', 30, 200, 100, 400, 150, 250],
+                      ['data2', 50, 20, 10, 40, 15, 25]
+                    ]
+                }
+            });
+        }
+        $scope.showGraphLocalStorage = function () {
             if ($scope.maxValues == null || isNaN($scope.maxValues))
                 $scope.maxValues = 10;
             var config = {};

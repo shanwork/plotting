@@ -3,25 +3,29 @@
     <table class="table table-striped">
         <tr>
             <th style="width:100px;">Company</th>
-            <th style="width:100px;"> Symbol</th>
-            <th style="width:100px;">Bought</th>
-            <th style="width:100px;">Price</th>
+            <th style="width:100px;">Symbol</th>
+            <th style="width:100px;">Buying Price</th>
+            <th style="width:100px;">Current Price</th>
+            <th style="width:100px;">Units Bought</th>
             <th style="width:100px;">Last Change</th>
             <th style="width:100px;">Change Since buy</th>
         </tr>
         <tr>
-            <th><input type="text" id="company" data-ng-model="newCompany" /></th>
-            <th><input type="text" id="symbol" data-ng-model="newSymbol" /></th>
-            <th><input type="text" id="origPrice" data-ng-model="newPrice" /></th>
-            <th><button type="button" data-ng-click="addStock()"> Add </button></th>
+            <td><input type="text" id="company" data-ng-model="newCompany" /></td>
+            <td><input type="text" id="symbol" data-ng-model="newSymbol" /></td>
+            <td><input type="text" id="origPrice" data-ng-model="newPrice" /></td>
+            <td>&nbsp;</td>
+            <td><input type="text" id="unitsBought" data-ng-model="newUnits" /></td>
+            <td><button type="button" data-ng-click="addStock()"> Add </button></td>
         </tr>
         <tr data-ng-repeat="stockItem in stockList">
             <td>{{stockItem.companyName}}</td>
             <td>{{stockItem.stockSymbol}}</td>
-            <td>{{stockItem.originalStockPrice}}</td>
-            <td>{{stockItem.stockPrice}}</td>
-            <td>{{stockItem.stockDelta}}</td>
-            <td>{{stockItem.changeSinceBuy}}</td>
+            <td>{{stockItem.originalStockPrice|number:2}}</td>
+            <td>{{stockItem.stockPrice|number:2}}</td>
+            <td>{{stockItem.sharesBought|number:2}}</td>
+            <td>{{stockItem.stockDelta|number:2}}</td>
+            <td>{{stockItem.changeSinceBuy|number:2}}</td>
         </tr>
     </table>
 
@@ -33,5 +37,9 @@
     Graph Plot values: 
     <input type="text" ng-model="maxValues" />
     <div id="chart"></div>
+    <div id="chart2"></div>
+    <table>
+        <tr></tr>
+    </table>
 </div>
 
