@@ -72,9 +72,12 @@
     <Content Include="graphs\scripts\global\heartBeatService.js" />
     <Content Include="index.html" />
     <Content Include="readings\home.html" />
+    <Content Include="readings\localStyle\c3.min.css" />
     <Content Include="readings\localStyle\readingStyle.css" />
     <Content Include="readings\scripts\app.js" />
+    <Content Include="readings\scripts\c3.min.js" />
     <Content Include="readings\scripts\controllers\NasdaqController.js" />
+    <Content Include="readings\scripts\d3.min.js" />
     <Content Include="readings\scripts\globals\NasdaqService.js" />
     <Content Include="readings\views\Nasdaq.html" />
     <Content Include="scripts\angular-route.js" />
