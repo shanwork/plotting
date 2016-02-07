@@ -6,6 +6,7 @@
         $scope.googlePrice = 1010.25;
         $scope.count = 0;
         $scope.delta = 0;
+        $scope.conversion = 0;
         $scope.selectedOption = {
             Name: 'USD',
             value: 1
@@ -36,8 +37,11 @@
             stop = $interval(
             function () {
                 var conversion = 1.00
-                if ($scope.selectedOption != undefined)
+                if ($scope.selectedOption != undefined && $scope.selectedOption.value != $scope.conversion) {
                     conversion = $scope.selectedOption.value;
+                    $scope.conversion = $scope.selectedOption.value;
+                    console.log(conversion);
+                }
                 //       $scope.stockList = $localStorage.stockList;
                 for (i = 0 ; i < $scope.stockList.length; i++) {
                    
@@ -53,8 +57,7 @@
                 $scope.showGraph();
             },
             $scope.interval);
-            $scope.graphable = 1;
-        };
+         };
         $scope.stopRead = function () {
             if (angular.isDefined(stop)) {
                 $interval.cancel(stop);

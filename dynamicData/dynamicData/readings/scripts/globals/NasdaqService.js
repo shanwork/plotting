@@ -93,40 +93,117 @@
             else
                 this.serverStopped = false;
             this.stop = $interval(
-            function (stockList ) {
-                var delta = 0;
-                count = $localStorage.count;
-                
-                if ( count % 3 == 0)
-                    delta = 12.25;
-                else if ( count % 4 == 0)
-                    delta = -30.25;
-                else if ( count % 5 == 0)
-                    delta = 22.25;
-                else if  (count % 6 == 0)
-                    delta -= -2.25;
-                else if (count % 9 == 0)
-                    delta -= -102.25;
-                for (i = 0 ; i <  $localStorage.stockList.length; i++)
+                function()
                 {
-                    $localStorage.stockList[i].stockDelta = delta;
-                    if (i == 0 || i % 2 == 0)
-                        $localStorage.stockList[i].stockDelta *= 1.5;
-                    else if (i%5==0)
-                        $localStorage.stockList[i].stockDelta *= -3.5;
-                    $localStorage.stockList[i].stockPrice += $localStorage.stockList[i].stockDelta;
-                    $localStorage.stockList[i].changeSinceBuy += $localStorage.stockList[i].stockDelta;
-               //     console.log($localStorage.stockList[0].stockPrice);
+                    var delta = 0;
+                    count = $localStorage.count;
 
-                    //  $scope.stockList[i].stockDelta  = delta;
 
-                }
-            //    $scope.googlePrice += delta;
-               // $scope.delta = delta;
-                $localStorage.count++;
-            },
+                    for (i = 0 ; i < $localStorage.stockList.length; i++) {
+                        var oldPrice = parseFloat($localStorage.stockList[i].stockPrice);
+                        if (count % 60 == 0)
+                            $localStorage.stockList[i].stockPrice *= 2.50;
+                        else if (count % 50 == 0)
+                            $localStorage.stockList[i].stockPrice *= 1.50;
+                        else if (count % 40 == 0)
+                            $localStorage.stockList[i].stockPrice *= 1.28;
+                        else if (count % 30 == 0)
+                            $localStorage.stockList[i].stockPrice *= 1.75;
+                        else if (count % 26 == 0)
+                            $localStorage.stockList[i].stockPrice *= 0.25;
+                        else if (count % 20 == 0)
+                            $localStorage.stockList[i].stockPrice *= 1.15;
+
+                        else if (count % 10 == 0)
+                            $localStorage.stockList[i].stockPrice *= 1.05;
+
+                        else if (count % 9 == 0)
+                            $localStorage.stockList[i].stockPrice *= 0.85;
+                        else if (count % 5 == 0)
+                            $localStorage.stockList[i].stockPrice *= 1.95;
+                        if (i % 1 == 0)
+                            $localStorage.stockList[i].stockPrice * 1.25;
+                        if (i % 3 == 0)
+                            $localStorage.stockList[i].stockPrice * 1.3;
+                        console.log('price change from ' + oldPrice + ' to ' + $localStorage.stockList[i].stockPrice);
+                        $localStorage.stockList[i].stockDelta = $localStorage.stockList[i].stockPrice - oldPrice;
+
+                        $localStorage.stockList[i].changeSinceBuy += $localStorage.stockList[i].stockDelta;
+
+
+                    }
+
+                    $localStorage.count++;
+                },
+            //function (stockList ) {
+            //    var delta = 0;
+            //    count = $localStorage.count;
+                
+            //    if ( count % 3 == 0)
+            //        delta = 12.25;
+            //    else if ( count % 4 == 0)
+            //        delta = -30.25;
+            //    else if ( count % 5 == 0)
+            //        delta = 22.25;
+            //    else if  (count % 6 == 0)
+            //        delta -= -2.25;
+            //    else if (count % 9 == 0)
+            //        delta -= -102.25;
+            //    for (i = 0 ; i <  $localStorage.stockList.length; i++)
+            //    {
+            //        $localStorage.stockList[i].stockDelta = delta;
+            //        if (i == 0 || i % 2 == 0)
+            //            $localStorage.stockList[i].stockDelta *= 1.5;
+            //        else if (i%5==0)
+            //            $localStorage.stockList[i].stockDelta *= -3.5;
+            //        $localStorage.stockList[i].stockPrice += $localStorage.stockList[i].stockDelta;
+            //        $localStorage.stockList[i].changeSinceBuy += $localStorage.stockList[i].stockDelta;
+               
+
+            //    }
+           
+            //    $localStorage.count++;
+            //},
             500, 0, false, this.stockList, new Date().getMilliseconds() );
         //    console.log(this.stop);
+        };
+        this.randomVariation = function () {
+            var delta = 0;
+            count = $localStorage.count;
+
+
+            for (i = 0 ; i < $localStorage.stockList.length; i++) {
+                var oldPrice = parseFloat($localStorage.stockList[i].stockPrice);
+                if (count % 60 == 0)
+                    $localStorage.stockList[i].stockPrice *= 2.50;
+                else if (count % 50 == 0)
+                    $localStorage.stockList[i].stockPrice *= 1.50;
+                else if (count % 40 == 0)
+                    $localStorage.stockList[i].stockPrice *= 1.28;
+                else if (count % 30 == 0)
+                    $localStorage.stockList[i].stockPrice *= 0.75;
+                else if (count % 26 == 0)
+                    $localStorage.stockList[i].stockPrice *= 0.25;
+                else if (count % 20 == 0)
+                    $localStorage.stockList[i].stockPrice *= 0.5;
+
+                else if (count % 10 == 0)
+                    $localStorage.stockList[i].stockPrice *= 1.05;
+
+                else if (count % 9 == 0)
+                    $localStorage.stockList[i].stockPrice *= 0.85;
+                else if (count % 5 == 0)
+                    $localStorage.stockList[i].stockPrice *= 0.95;
+                console.log('price change from ' + oldPrice + ' to ' + $localStorage.stockList[i].stockPrice);
+                $localStorage.stockList[i].stockDelta = $localStorage.stockList[i].stockPrice - oldPrice;
+
+                $localStorage.stockList[i].changeSinceBuy += $localStorage.stockList[i].stockDelta;
+
+
+            }
+
+            $localStorage.count++;
+            return (0);
         };
     });
 }());
