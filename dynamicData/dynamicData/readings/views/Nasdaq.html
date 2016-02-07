@@ -22,10 +22,10 @@
         </tr>
         <tr data-ng-repeat="stockItem in stockList">
             <td><input type="checkbox" data-ng-model="stockItem.graphIt"/></td>
-            <td>{{stockItem.companyName}}</td>
+            <td ng-style>{{stockItem.companyName}}</td>
             <td>{{stockItem.stockSymbol}}</td>
             <td>{{stockItem.originalStockPrice|number:2}}</td>
-            <td>{{stockItem.stockPrice|number:2}}</td>
+            <td data-ng-style="stockprice">{{stockItem.stockPrice|number:2}}</td>
             <td>{{stockItem.sharesBought|number:2}}</td>
             <td>{{stockItem.stockDelta|number:2}}</td>
             <td>{{stockItem.changeSinceBuy|number:2}}</td>

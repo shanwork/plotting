@@ -98,29 +98,35 @@
                     var delta = 0;
                     count = $localStorage.count;
 
-
+                    
                     for (i = 0 ; i < $localStorage.stockList.length; i++) {
+                        
                         var oldPrice = parseFloat($localStorage.stockList[i].stockPrice);
-                        if (count % 60 == 0)
-                            $localStorage.stockList[i].stockPrice *= 2.50;
-                        else if (count % 50 == 0)
-                            $localStorage.stockList[i].stockPrice *= 1.50;
-                        else if (count % 40 == 0)
-                            $localStorage.stockList[i].stockPrice *= 1.28;
-                        else if (count % 30 == 0)
-                            $localStorage.stockList[i].stockPrice *= 1.75;
-                        else if (count % 26 == 0)
-                            $localStorage.stockList[i].stockPrice *= 0.25;
-                        else if (count % 20 == 0)
-                            $localStorage.stockList[i].stockPrice *= 1.15;
+                        if (count == 200) {
+                            $localStorage.stockList[i].stockPrice *= 0.09;
+                        }
+                        else {
+                            if (count % 60 == 0)
+                                $localStorage.stockList[i].stockPrice *= 2.50;
+                            else if (count % 50 == 0)
+                                $localStorage.stockList[i].stockPrice *= 1.50;
+                            else if (count % 40 == 0)
+                                $localStorage.stockList[i].stockPrice *= 1.28;
+                            else if (count % 30 == 0)
+                                $localStorage.stockList[i].stockPrice *= 1.75;
+                            else if (count % 26 == 0)
+                                $localStorage.stockList[i].stockPrice *= 0.25;
+                            else if (count % 20 == 0)
+                                $localStorage.stockList[i].stockPrice *= 1.15;
 
-                        else if (count % 10 == 0)
-                            $localStorage.stockList[i].stockPrice *= 1.05;
+                            else if (count % 10 == 0)
+                                $localStorage.stockList[i].stockPrice *= 1.05;
 
-                        else if (count % 9 == 0)
-                            $localStorage.stockList[i].stockPrice *= 0.85;
-                        else if (count % 5 == 0)
-                            $localStorage.stockList[i].stockPrice *= 1.95;
+                            else if (count % 9 == 0)
+                                $localStorage.stockList[i].stockPrice *= 0.85;
+                            else if (count % 5 == 0)
+                                $localStorage.stockList[i].stockPrice *= 1.95;
+                        }
                         if (i % 1 == 0)
                             $localStorage.stockList[i].stockPrice * 1.25;
                         if (i % 3 == 0)

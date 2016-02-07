@@ -72,6 +72,7 @@
     <Content Include="graphs\scripts\global\heartBeatService.js" />
     <Content Include="index.html" />
     <Content Include="readings\home.html" />
+    <Content Include="readings\localStyle\readingStyle.css" />
     <Content Include="readings\scripts\app.js" />
     <Content Include="readings\scripts\controllers\NasdaqController.js" />
     <Content Include="readings\scripts\globals\NasdaqService.js" />
@@ -89,7 +90,6 @@
   <ItemGroup>
     <Folder Include="graphs\localStyle\" />
     <Folder Include="graphs\views\" />
-    <Folder Include="readings\localStyle\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
