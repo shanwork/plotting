@@ -40,7 +40,7 @@
                 if ($scope.selectedOption != undefined && $scope.selectedOption.value != $scope.conversion) {
                     conversion = $scope.selectedOption.value;
                     $scope.conversion = $scope.selectedOption.value;
-                    console.log(conversion);
+                 //   console.log(conversion);
                 }
                 //       $scope.stockList = $localStorage.stockList;
                 for (i = 0 ; i < $scope.stockList.length; i++) {

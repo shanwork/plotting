@@ -47,6 +47,17 @@
                     sharesBought: 250,
                     stockDelta: 0.00,
                     changeSinceBuy: 0.00
+                },
+                {
+                    graphIt: true,
+                    companyName: 'Company5',
+                    stockSymbol: 'COM5',
+                    originalStockPrice: 115.01,
+                    stockPrice: 115.01,
+                    stockPriceConverted: 115.01,
+                    sharesBought: 300,
+                    stockDelta: 0.00,
+                    changeSinceBuy: 0.00
                 }
             ];
         this.serverStopped ;
@@ -102,8 +113,17 @@
                     for (i = 0 ; i < $localStorage.stockList.length; i++) {
                         
                         var oldPrice = parseFloat($localStorage.stockList[i].stockPrice);
-                        if (count == 200) {
-                            $localStorage.stockList[i].stockPrice *= 0.09;
+                        if (count > 0 && count % 200 ==0) {
+                            $localStorage.stockList[i].stockPrice *= 0.01;
+                            console.log('major drop ' + $localStorage.stockList[i].stockPrice)
+                        }
+                        else if (count >= 20 && count <= 22) {
+                            $localStorage.stockList[i].stockPrice *= 0.50;
+                        }
+                        else if (count >=90 && count <= 92)
+                        {
+                            $localStorage.stockList[i].stockPrice *= 0.75;
+                            console.log('mid drop ' + $localStorage.stockList[i].stockPrice)
                         }
                         else {
                             if (count % 60 == 0)
@@ -131,7 +151,7 @@
                             $localStorage.stockList[i].stockPrice * 1.25;
                         if (i % 3 == 0)
                             $localStorage.stockList[i].stockPrice * 1.3;
-                        console.log('price change from ' + oldPrice + ' to ' + $localStorage.stockList[i].stockPrice);
+                     //   console.log('price change from ' + oldPrice + ' to ' + $localStorage.stockList[i].stockPrice);
                         $localStorage.stockList[i].stockDelta = $localStorage.stockList[i].stockPrice - oldPrice;
 
                         $localStorage.stockList[i].changeSinceBuy += $localStorage.stockList[i].stockDelta;
@@ -140,6 +160,8 @@
                     }
 
                     $localStorage.count++;
+                    if ($localStorage.count >= 20000)
+                        $localStorage.count = 0;
                 },
             //function (stockList ) {
             //    var delta = 0;
@@ -170,7 +192,7 @@
            
             //    $localStorage.count++;
             //},
-            500, 0, false, this.stockList, new Date().getMilliseconds() );
+            750, 0, false, this.stockList, new Date().getMilliseconds() );
         //    console.log(this.stop);
         };
         this.randomVariation = function () {
@@ -200,7 +222,7 @@
                     $localStorage.stockList[i].stockPrice *= 0.85;
                 else if (count % 5 == 0)
                     $localStorage.stockList[i].stockPrice *= 0.95;
-                console.log('price change from ' + oldPrice + ' to ' + $localStorage.stockList[i].stockPrice);
+           //     console.log('price change from ' + oldPrice + ' to ' + $localStorage.stockList[i].stockPrice);
                 $localStorage.stockList[i].stockDelta = $localStorage.stockList[i].stockPrice - oldPrice;
 
                 $localStorage.stockList[i].changeSinceBuy += $localStorage.stockList[i].stockDelta;
