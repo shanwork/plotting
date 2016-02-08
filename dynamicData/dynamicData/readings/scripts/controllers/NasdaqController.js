@@ -26,28 +26,40 @@
                 }
             ];
         var stop;
-
+        $scope.startRead, $scope.marcRead;
+        $scope.localCount;
         $scope.readStock = function () {
+            if ($scope.startRead==null || $scope.startRead== undefined)
+            {
+                $scope.startRead= new Date();
+                if ($localStorage.startRead==null || $localStorage.startRead== undefined)
+                    $localStorage.startRead = new Date();
+                $scope.marcRead= $localStorage.startRead;
+            }
             if ($scope.interval == null || isNaN($scope.interval))
                 $scope.interval = 500;
             if (angular.isDefined(stop))
                 return;
             // NasdaqService.getStockList();
-            
+            $scope.localCount = 0;
             stop = $interval(
             function () {
                 var conversion = 1.00
+                $scope.localCount = $localStorage.count;
+                if ($localStorage.count % 200 == 0 )
+                    $scope.marcRead= new Date();
                 if ($scope.selectedOption != undefined && $scope.selectedOption.value != $scope.conversion) {
                     conversion = $scope.selectedOption.value;
                     $scope.conversion = $scope.selectedOption.value;
                  //   console.log(conversion);
                 }
-                //       $scope.stockList = $localStorage.stockList;
+                //       style="color:blue;"
                 for (i = 0 ; i < $scope.stockList.length; i++) {
                    
                     $scope.stockList[i].stockDelta = $localStorage.stockList[i].stockDelta * conversion;
                     $scope.stockList[i].stockPrice = $localStorage.stockList[i].stockPrice * conversion;
                     $scope.stockList[i].changeSinceBuy = $localStorage.stockList[i].changeSinceBuy * conversion;
+                    myStyle = "{color:'blue'}";
                    // console.log($scope.stockList[i].stockPrice);
                    // console.log($localStorage.stockList[i].stockPrice);
                     //  $scope.stockList[i].stockDelta  = delta;
@@ -57,7 +69,35 @@
                 $scope.showGraph();
             },
             $scope.interval);
-         };
+        };
+        $scope.setColor = function (changeSinceBuy)
+        {
+            if (Math.abs(changeSinceBuy) < 5.0) {
+                $scope.quality = 'normal';
+                return { color: 'blue' };
+            }
+            if (changeSinceBuy < -15.0) {
+                $scope.quality = 'worst';
+                return { color: 'red' };
+            }
+            if (changeSinceBuy < -15.0) {
+                $scope.quality = 'worse';
+                return { color: 'orange' };
+            }
+            if (changeSinceBuy < -5.0) {
+                $scope.quality = 'bad';
+                return { color: 'maroon' };
+            }
+            
+            if (changeSinceBuy > 15.0) {
+                $scope.quality = 'better';
+                return { color: 'green' };
+            }
+            if (changeSinceBuy > 5.0) {
+                $scope.quality = 'good';
+                return { color: 'darkgreen' };
+            }
+        }
         $scope.stopRead = function () {
             if (angular.isDefined(stop)) {
                 $interval.cancel(stop);
@@ -76,7 +116,7 @@
         }
         $scope.flush = function () {
             $localStorage.stockList=[];
-            $scope.getStockList();
+         //   $scope.stockList = NasdaqService.getStockList();
         }
         $scope.addStock = function()
         {

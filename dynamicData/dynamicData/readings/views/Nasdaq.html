@@ -23,9 +23,9 @@
         <tr data-ng-repeat="stockItem in stockList">
             <td><input type="checkbox" data-ng-model="stockItem.graphIt"/></td>
             <td ng-style>{{stockItem.companyName}}</td>
-            <td>{{stockItem.stockSymbol}}</td>
+            <td  >{{stockItem.stockSymbol}}</td>
             <td>{{stockItem.originalStockPrice|number:2}}</td>
-            <td data-ng-style="stockprice">{{stockItem.stockPrice|number:2}}</td>
+            <td data-ng-style="setColor(stockItem.changeSinceBuy)">{{stockItem.stockPrice|number:2}}</td>
             <td>{{stockItem.sharesBought|number:2}}</td>
             <td>{{stockItem.stockDelta|number:2}}</td>
             <td>{{stockItem.changeSinceBuy|number:2}}</td>
@@ -40,8 +40,10 @@
  
     Currency: <select data-ng-model="selectedOption"
             data-ng-options="currency.Name + ' (' + currency.value +')' for currency in  currencyList"></select>
-    Graph Plot values: 
+    Graph Plot columns: 
     <input type="text" ng-model="maxValues" />
+    &nbsp; Start: {{startRead }} , Count {{localCount}}, 200 multiple at {{marcRead }} {{quality}}
+    <br />
     <div id="chart" style="float:left;width:50%;"></div>
     <div id="chart2" style="float:right;width:50%;"></div>
     <table>
